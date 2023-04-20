@@ -7,8 +7,9 @@ import numpy as np
 
 app = FastAPI()
 
-with open('modelForPrediction.sav', 'rb') as f:
+with open('FastAPI_backend/modelForPrediction.sav', 'rb') as f:
     model = pickle.load(f)
+
 
 class ModelInput(BaseModel):
     temp: float

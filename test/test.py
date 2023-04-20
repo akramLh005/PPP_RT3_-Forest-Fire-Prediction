@@ -29,5 +29,3 @@ def test_failed_prediction():
     }
     response = client.post("/prediction", json=test_data)
     assert response.status_code == 422
-
-# Smoke test to ensure the API is running

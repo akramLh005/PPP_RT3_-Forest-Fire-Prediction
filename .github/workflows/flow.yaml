@@ -27,7 +27,20 @@ jobs:
       run: |
        pip install pytest
        pytest test_app.py
-   
+       
+    - name: Login to Azure
+      uses: azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+    - name: Build and Deploy to Azure
+      uses: azure/webapps-deploy@v2
+      with:
+        app-name: <your-azure-app-name>
+        slot-name: production
+        publish-profile: ${{ secrets.AZURE_CREDENTIALS }}
+        package: FastAPI_backend
+        
     - name: Run W&B monitoring
       run: |
         pip install wandb

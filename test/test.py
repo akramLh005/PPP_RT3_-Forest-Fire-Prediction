@@ -1,9 +1,10 @@
 import pytest
 import httpx
 from fastapi.testclient import TestClient
-from backend_fastAPI.main import app, ModelInput
+from FastAPI_backend.main import app, ModelInput
 
-client = TestClient(app)
+
+client = TestClient(main)
 
 #successful prediction
 def test_successful_prediction():

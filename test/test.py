@@ -1,7 +1,7 @@
 import pytest
 import httpx
 from fastapi.testclient import TestClient
-from FastAPI_backend import main, ModelInput
+from backend_fastAPI.main import app, ModelInput
 
 client = TestClient(app)
 

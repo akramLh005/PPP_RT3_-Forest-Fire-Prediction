@@ -34,3 +34,8 @@ async def model_prediction(input_data: ModelInput):
         "prediction value": int(prediction),
         "message": pred_msg
     }
+
+@app.get("/smoke")
+async def smoke_test():
+    return {"status": "OK"}
+

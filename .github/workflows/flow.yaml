@@ -27,4 +27,9 @@ jobs:
       run: |
        pip install pytest
        pytest test_app.py
-
+   
+    - name: Run W&B monitoring
+      run: |
+        pip install wandb
+        wandb login $WB_API_KEY
+        python train.py

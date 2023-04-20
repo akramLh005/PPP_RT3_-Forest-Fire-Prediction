@@ -2,7 +2,7 @@ from fastapi import FastAPI
 from pydantic import BaseModel
 import pickle
 import numpy as np
-from backend_fastAPI.models import ModelInput
+
 
 
 app = FastAPI()

@@ -22,7 +22,12 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         pip install -r requirements.txt
-      
+        
+    - name: Test with pytest
+      run: |
+       pip install pytest
+       pytest test_app.py
+       
     - name: Run W&B monitoring
       run: |
         pip install wandb[sklearn]

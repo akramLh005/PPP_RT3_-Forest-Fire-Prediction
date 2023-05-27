@@ -36,5 +36,5 @@ jobs:
       with:
         app-name: 'Front-PPP-webApp'
         publish-profile: ${{ secrets.AZURE_PUBLISH_PROFILE }}
-        package: './front'
+        package: './FastAPI_backend'
         

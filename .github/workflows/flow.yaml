@@ -33,6 +33,9 @@ jobs:
         pip install wandb[sklearn]
         export WANDB_API_KEY=${{ secrets.WB_API_KEY }}
         python train.py
+    - name: Install Azure CLI
+      run: |
+        curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
 
     - name: Login to Azure
       uses: azure/login@v1

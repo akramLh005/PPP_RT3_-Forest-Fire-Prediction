@@ -28,6 +28,12 @@ jobs:
        pip install pytest
        pytest test_app.py
        
+    - name: Run W&B monitoring
+      run: |
+        pip install wandb[sklearn]
+        export WANDB_API_KEY=${{ secrets.WB_API_KEY }}
+        python train.py
+       
     - name: Login to Azure
       uses: azure/login@v1
       with:
@@ -41,8 +47,3 @@ jobs:
         publish-profile: ${{ secrets.AZURE_CREDENTIALS }}
         package: FastAPI_backend
         
-    - name: Run W&B monitoring
-      run: |
-        pip install wandb
-        wandb login $WB_API_KEY
-        python train.py

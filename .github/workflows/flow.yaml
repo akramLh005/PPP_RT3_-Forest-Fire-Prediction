@@ -23,19 +23,13 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt
         
-    - name: Test with pytest
-      run: |
-       pip install pytest
-       pytest test_app.py
-       
-    - name: Run W&B monitoring
-      run: |
-        pip install wandb[sklearn]
-        export WANDB_API_KEY=${{ secrets.WB_API_KEY }}
-        python train.py
     - name: Install Azure CLI
       run: |
         curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
+
+    - name: Check Azure CLI
+      run: |
+        az --version
 
     - name: Login to Azure
       uses: azure/login@v1

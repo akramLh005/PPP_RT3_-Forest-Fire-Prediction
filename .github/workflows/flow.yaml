@@ -22,16 +22,12 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         pip install -r requirements.txt
-
-       
+      
     - name: Run W&B monitoring
       run: |
         pip install wandb[sklearn]
         export WANDB_API_KEY=${{ secrets.WB_API_KEY }}
         python train.py
-       
-    - name: Set up Azure CLI
-      uses: azure/setup-azure-cli@v1
 
     - name: Login to Azure
       uses: azure/login@v1

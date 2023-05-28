@@ -12,7 +12,7 @@ COPY assets /app/assets
 
 
 # Copy the default.conf file to the container
-COPY default.conf /etc/nginx/conf.d/
+COPY ./default.conf /etc/nginx/conf.d/
 
 # Expose port 80 to allow incoming traffic
 EXPOSE 80

@@ -30,4 +30,8 @@ jobs:
           file: ./front/dockerfile
           push: true
           tags: backregistry.azurecr.io/front:${{ github.sha }}
+      - name: Save state
+        run: echo "{name}={value}" >> $GITHUB_STATE
 
+      - name: Set output
+        run: echo "{name}={value}" >> $GITHUB_OUTPUT

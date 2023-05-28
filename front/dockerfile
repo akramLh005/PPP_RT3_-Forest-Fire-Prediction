@@ -13,7 +13,7 @@ COPY assets /app/assets
 
 # Add your custom NGINX configuration
 RUN echo "server {
-    listen 80;
+    EXPOSE 80;
     server_name localhost;
     root /usr/share/nginx/html;
     index index.html;

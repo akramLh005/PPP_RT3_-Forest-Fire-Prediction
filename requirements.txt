@@ -1,3 +1,5 @@
+streamlit
+aiofiles
 httpx
 pandas
 seaborn

@@ -14,8 +14,7 @@ WORKDIR /
 COPY index.html .
 
 # Copy the assets directory (containing CSS and images) to the container
-COPY assets /app/assets
-
+COPY assets /assets
 
 # Copy the default.conf file to the container
 COPY default.conf /etc/nginx/conf.d/
@@ -25,3 +24,4 @@ EXPOSE 80
 
 # Start the web server
 CMD ["nginx", "-g", "daemon off;"]
+

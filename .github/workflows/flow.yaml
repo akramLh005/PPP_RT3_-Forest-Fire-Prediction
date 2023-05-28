@@ -14,27 +14,19 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
+    - uses: actions/checkout@v2
 
-    - name: Set up Python
-      uses: actions/setup-python@v2
+    - name: Login to Azure Container Registry
+      uses: docker/login-action@v1 
       with:
-        python-version: 3.8
-
-    - name: Install dependencies
-      run: |
-        python -m pip install --upgrade pip
-        pip install -r requirements.txt
-        
-    - name: Check Azure CLI
-      run: |
-        az --version
-
-    - name: Deploy to Azure
-      uses: azure/webapps-deploy@v2
+        registry: <registry-name>.azurecr.io
+        username: ${{ secrets.ACR_USERNAME }}
+        password: ${{ secrets.ACR_PASSWORD }}
+    
+    - name: Build and push Docker image
+      uses: docker/build-push-action@v2
       with:
-        app-name: 'Front-PPP-webApp'
-        publish-profile: ${{ secrets.AZURE_PUBLISH_PROFILE }}
-        package: './FastAPI_backend'
+        context: .
+        push: true
+        tags: <registry-name>.azurecr.io/front:${{ github.sha }}
         

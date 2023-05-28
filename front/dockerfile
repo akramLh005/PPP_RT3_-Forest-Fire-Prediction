@@ -11,7 +11,7 @@ COPY index.html .
 COPY assets /app/assets
 
 # Copy your custom NGINX configuration file to the container
-COPY nginx.conf /etc/nginx/conf.d/default.conf
+COPY nginx.conf /etc/nginx/conf.d/
 
 # Expose port 80 to allow incoming traffic
 EXPOSE 80

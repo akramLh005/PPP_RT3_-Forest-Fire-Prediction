@@ -1,0 +1,21 @@
+# Use an official web server image as the base
+FROM nginx:latest
+
+# Set the working directory to /app
+WORKDIR /app
+
+# Copy the index.html file to the container
+COPY index.html .
+
+# Copy the assets directory (containing CSS and images) to the container
+COPY assets /app/assets
+
+
+# Copy the default.conf file to the container
+COPY default.conf /etc/nginx/conf.d/
+
+# Expose port 80 to allow incoming traffic
+EXPOSE 80
+
+# Start the web server
+CMD ["nginx", "-g", "daemon off;"]

@@ -34,7 +34,7 @@ jobs:
     - name: Deploy to Azure
       uses: azure/webapps-deploy@v2
       with:
-        app-name: 'Front-PPP-webApp'
+        app-name: 'app.py'
         publish-profile: ${{ secrets.AZURE_PUBLISH_PROFILE }}
-        package: './FastAPI_backend'
+        package: '.'
         

@@ -4,10 +4,7 @@ FROM nginx:latest
 # Set the working directory to /app
 WORKDIR /app
 
-# Copy the index.html file to the container
-COPY index.html .
-
-# Copy the assets directory (containing CSS and images) to the container
+COPY index.html /app/index.html
 COPY assets /app/assets
 
 

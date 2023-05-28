@@ -19,7 +19,7 @@ jobs:
       - name: Login to Azure Container Registry
         uses: docker/login-action@v1 
         with:
-          registry: backregistry.azurecr.io
+          registry: FrontRegistry.azurecr.io
           username: ${{ secrets.ACR_USERNAME }}
           password: ${{ secrets.ACR_PASSWORD }}
         
@@ -29,5 +29,5 @@ jobs:
           context: .
           file: ./front/dockerfile
           push: true
-          tags: backregistry.azurecr.io/front:${{ github.sha }}
+          tags: FrontRegistry.azurecr.io/front:${{ github.sha }}
           

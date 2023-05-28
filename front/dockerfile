@@ -10,17 +10,8 @@ COPY index.html .
 # Copy the assets directory (containing CSS and images) to the container
 COPY assets /app/assets
 
-# Remove the default NGINX configuration file
-RUN rm /etc/nginx/conf.d/default.conf
-
-# Add your custom NGINX configuration
-RUN echo "server {
-    listen 80;
-    server_name localhost;
-    root /usr/share/nginx/html;
-    index index.html;
-    # Your additional custom configuration here
-}" > /etc/nginx/conf.d/default.conf
+# Copy your custom NGINX configuration file to the container
+COPY nginx.conf /etc/nginx/conf.d/default.conf
 
 # Expose port 80 to allow incoming traffic
 EXPOSE 80

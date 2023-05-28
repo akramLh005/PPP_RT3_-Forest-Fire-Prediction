@@ -10,10 +10,12 @@ COPY index.html .
 # Copy the assets directory (containing CSS and images) to the container
 COPY assets /app/assets
 
+# Remove the default NGINX configuration file
+RUN rm /etc/nginx/conf.d/default.conf
 
 # Add your custom NGINX configuration
 RUN echo "server {
-    EXPOSE 80;
+    listen 80;
     server_name localhost;
     root /usr/share/nginx/html;
     index index.html;

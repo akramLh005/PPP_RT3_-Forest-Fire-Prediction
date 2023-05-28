@@ -27,7 +27,7 @@ jobs:
       uses: docker/build-push-action@v2
       with:
         context: .
-        dockerfile: ./front/Dockerfile
+        dockerfile: ./front/dockerfile
         push: true
         tags: backregistry.azurecr.io/front:${{ github.sha }}
 

@@ -11,15 +11,13 @@ COPY default.conf /etc/nginx/conf.d/app.conf
 WORKDIR /usr/share/nginx/html
 
 # Copy the index.html file to the container
-COPY index.html .
+COPY front/index.html .
 
 # Copy the assets directory (containing CSS and images) to the container
-COPY assets ./assets
+COPY front/assets ./assets
 
 # Expose port 80 to allow incoming traffic
 EXPOSE 80
 
 # Start the web server
 CMD ["nginx", "-g", "daemon off;"]
-
-

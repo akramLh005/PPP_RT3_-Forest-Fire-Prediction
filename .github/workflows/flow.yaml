@@ -109,5 +109,5 @@ jobs:
 
       - name: Run Training Script
         run: |
-          export WANDB_API_KEY=${{ secrets.WANDB_API_KEY }}
+          export WANDB_API_KEY=${{ secrets.WB_API_KEY }}
           python your_training_script.py

@@ -65,30 +65,25 @@ jobs:
         tags: ${{ env.REGISTRY_BACKEND_NAME }}.azurecr.io/${{ env.BACKEND_IMAGE_NAME }}:${{ github.sha }}
 
   deploy-to-webapp:
-    needs: [build-and-push, build-and-push-backend]
-    runs-on: ubuntu-latest
-    steps:
-    - name: Checkout repository
-      uses: actions/checkout@v2
+   needs: [build-and-push, build-and-push-backend]
+   runs-on: ubuntu-latest
+   steps:
+   - name: Checkout repository
+     uses: actions/checkout@v2
 
-    - name: Install Azure CLI
-      run: |
-        curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
-    - name: Azure Login
-      uses: azure/login@v1
-      with:
-        creds: ${{ secrets.AZURE_CREDENTIALS }}
-        environment: 'AzureStack'
-    - run: |
-        az webapp list --query "[?state=='Running']"
-    - name: Set Web App to use new image
-      run: |
-        az webapp config container set --name ${{ env.WEBAPP_NAME }} \
-          --resource-group ${{ env.RESOURCE_GROUP }} \
-          --docker-custom-image-name ${{ env.REGISTRY_NAME }}.azurecr.io/${{ env.IMAGE_NAME }}:${{ github.sha }} \
-          --docker-registry-server-url https://${{ env.REGISTRY_NAME }}.azurecr.io
-    - name: Set Backend Web App to use new image
-      run: |
-        az webapp config container set --name ${{ env.BACKEND_WEBAPP_NAME }} \
-          --resource-group ${{ env.RESOURCE_GROUP }} \
-          --docker-custom-image-name ${{ env.REGISTRY_NAME }}
+   - name: Deploy to Web App
+     uses: azure/webapps-deploy@v2
+     with:
+      app-name: ${{ env.WEBAPP_NAME }}
+      slot-name: 'production' # specify your slot name here if you have one, otherwise remove this line
+      publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }} # set this secret in your GitHub repo
+      images: '${{ env.REGISTRY_NAME }}.azurecr.io/${{ env.IMAGE_NAME }}:${{ github.sha }}'
+
+   - name: Deploy to Backend Web App
+     uses: azure/webapps-deploy@v2
+     with:
+      app-name: ${{ env.BACKEND_WEBAPP_NAME }}
+      slot-name: 'production' # specify your slot name here if you have one, otherwise remove this line
+      publish-profile: ${{ secrets.AZURE_BACKEND_WEBAPP_PUBLISH_PROFILE }} # set this secret in your GitHub repo
+      images: '${{ env.REGISTRY_BACKEND_NAME }}.azurecr.io/${{ env.BACKEND_IMAGE_NAME }}:${{ github.sha }}'
+

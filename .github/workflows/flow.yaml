@@ -14,8 +14,8 @@ env:
   REGISTRY_BACKEND_NAME: BackRegistry
   IMAGE_NAME: front 
   BACKEND_IMAGE_NAME: backend
-  WEBAPP_NAME: NginxFrontApp
-  BACKEND_WEBAPP_NAME: BackendApp
+  WEBAPP_NAME: NginxApp8
+  BACKEND_WEBAPP_NAME: BackendApp-ppp
   RESOURCE_GROUP: PPP
   LOCATION: southafricanorth
   

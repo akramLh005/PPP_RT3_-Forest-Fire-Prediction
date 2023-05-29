@@ -90,3 +90,24 @@ jobs:
       publish-profile: ${{ secrets.AZURE_BACKEND_WEBAPP_PUBLISH_PROFILE }} # set this secret in your GitHub repo
       images: '${{ env.REGISTRY_BACKEND_NAME }}.azurecr.io/${{ env.BACKEND_IMAGE_NAME }}:${{ github.sha }}'
 
+  training-metrics:
+    needs: [deploy-to-webapp]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+        
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Run Training Script
+        run: |
+          export WANDB_API_KEY=${{ secrets.WANDB_API_KEY }}
+          python your_training_script.py

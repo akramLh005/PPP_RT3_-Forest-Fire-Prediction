@@ -52,7 +52,7 @@ Checks out the repository
 Sets up the Python environment
 Installs the dependencies listed in the requirements.txt file
 Runs the training script, utilizing the W&B API key from secrets
-Configuration
+
 ![image](assets/images/wandb.png)
 
 ### The Forest Fires Detection App is configured with the following environment variables:

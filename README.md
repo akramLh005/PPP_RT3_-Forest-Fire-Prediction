@@ -61,13 +61,21 @@ Runs the training script, utilizing the W&B API key from secrets
 ### The Forest Fires Detection App is configured with the following environment variables:
 
 REGISTRY_NAME: Name of the frontend Azure Container Registry (ACR)
+
 REGISTRY_BACKEND_NAME: Name of the backend Azure Container Registry (ACR)
+
 IMAGE_NAME: Name of the frontend Docker image
+
 BACKEND_IMAGE_NAME: Name of the backend Docker image
+
 WEBAPP_NAME: Name of the Azure Web App for the frontend
+
 BACKEND_WEBAPP_NAME: Name of the Azure Web App for the backend
+
 RESOURCE_GROUP: Azure resource group name
+
 LOCATION: Azure region location
+
 The necessary secrets, such as ACR_USERNAME, ACR_PASSWORD, AZURE_CREDENTIALS, AZURE_WEBAPP_PUBLISH_PROFILE, AZURE_BACKEND_WEBAPP_PUBLISH_PROFILE, and WB_API_KEY are required and should be set in the GitHub repository.
 
 This project aims to detect forest fires and provides a complete workflow to ensure the application is thoroughly

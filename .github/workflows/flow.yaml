@@ -39,9 +39,10 @@ jobs:
         pip install pytest httpx fastapi[all]
   
     - name: Run tests
-      run: pytest test.py
+      run: pytest test_app.py
       
   build-and-push:
+    needs: [test]
     runs-on: ubuntu-latest
     steps:
     - name: Checkout repository
@@ -63,6 +64,7 @@ jobs:
         tags: ${{ env.REGISTRY_NAME }}.azurecr.io/${{ env.IMAGE_NAME }}:${{ github.sha }}
 
   build-and-push-backend:
+    needs: [test]
     runs-on: ubuntu-latest
     steps:
     - name: Checkout repository
